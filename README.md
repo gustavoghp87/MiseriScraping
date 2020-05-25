@@ -9,8 +9,8 @@ Lo mismo decimos para el nombre específico de las calles. Por ejemplo, Páginas
 
 Librerías: requiere beautifulsoup y xlsxwriter
 
-<video src="https://youtu.be/AJW4_3rtcoE" width="320" height="200" controls preload></video>
-
+<video src="https://www.youtube.com/embed/AJW4_3rtcoE" width="320" height="200" controls preload></video>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/AJW4_3rtcoE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ############################################################################################################################################
 
