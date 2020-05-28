@@ -7,7 +7,12 @@ Respecto a las jurisdicciones, partidos y localidades, se depende de la base de 
 
 Lo mismo decimos para el nombre específico de las calles. Por ejemplo, Páginas Blancas toma "j m moreno" y no "jose maria moreno". Hay que ir probando.
 
-Librerías: requiere beautifulsoup y xlsxwriter (instalar globalmente)
+Librerías: requiere beautifulsoup y xlsxwriter
+
+<video src="https://www.youtube.com/embed/AJW4_3rtcoE" width="320" height="200" controls preload></video>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/AJW4_3rtcoE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+############################################################################################################################################
 
 MiseriScraping is a web scraping app wroten in Python to seek and download telephone numbers with addresses very fast and automatic.
 
@@ -15,6 +20,8 @@ Require:
 pip3 install bs4
 pip3 install XlsxWriter
 
+
+############################################################################################################################################
 
 Instrucciones para Windows:
 1) Descargar python 3 desde https://www.python.org/downloads/release/python-383/
@@ -31,6 +38,7 @@ Instrucciones para Windows:
    Si ninguna de estas cosas funciona, reiniciar pc y volver a intentar
 6) Poner miseriscraping.py en una carpeta exclusiva
 7) Presionando Shift hacer click derecho en alguna parte vacía de la carpeta y seleccionar "Abrir la ventana de PowerShell aquí"
+   Esto es solo para Windows 10. Para versiones anteriores, hay que abrir "cmd" como en el punto 4) y navegar hasta MiseriScraping
 8) Tipear: python3 .\miseriscraping.py     y dar enter
 9) El programa puede ser interrumpido en cualquier momento con control+c
 
