@@ -1,0 +1,88 @@
+modheaders desde sitio
+
+buscar github/gitignore/Python.gitignore
+
+
+vagrant  desde sitio o terminal --> vagrant init    -->
+	copiar vagrant file del repositorio del curso     y agregar config.vm.synced_folder '../src', 'home/vagrant/src'
+	para que sincronice             marcha atrás:   vagrant global-status    vagrant destroy [código de VM]
+
+vagrant up        en carpeta root, crea ubuntu server virtual       (tener instalado virtualbox)
+Ir a VM con vagrant ssh y tiene que haber una carpeta src en la home del usuario vagrant
+vagrant ssh       conecta a VM, se sale con exit, sudo reboot, usuario = vagrant
+
+En home/vagrant/
+	virtualenv profiles_api --python=python3       para crear entorno virtual en la máquina virtual y usar solo python3
+	source profiles_api/bin/activate        para activar el entorno, corroborar con pip freeze y python --version   contrario: deactivate
+	pip(3) install django
+	pip install djangorestframework
+	
+En home/vagrant/src/
+	django-admin.py startproject profiles_project       crea manage.py y subcapeta de mismo nombre del proyecto
+En home/vagrant/src/profiles_project/
+	python manage.py startapp profiles_api
+
+
+agregar 'rest_framework', 'rest_framework.authtoken', 'profiles_api'     a settings.py INSTALLED_APPS = []
+
+
+pip freeze > requirements     en /src/
+
+django trae su servidor de prueba:   python manage.py runserver 0.0.0.0:8080
+ver en el navegador
+
+
+---o---
+
+Los modelos se escriben en profiles_api/models.py        completarlo con los campos requeridos para el logging
+
+agregar AUTH_USER_MODEL = 'profiles_api.UserProfile'     en profiles_project/profiles_project/settings.py abajo de todo
+
+
+---o---
+
+Django trae "migración de databases" para administrar la base de datos sin usar código sql
+
+En /src/profiles_project/
+	python manage.py makemigrations      crea la carpeta migrations dentro de profiles_api/ con los archivos que van a conectar al 
+administrador de usuarios y la base de datos
+	python manage.py migrate
+	python manage.py showmigrations --list
+
+Crear un superusuario:    python manage.py createsuperuser
+
+Registrar el modelo en admin.py
+	from . import models
+	admin.site.register(models.UserProfile)
+
+
+python manage.py runserver 0.0.0.0:8080
+	En máquina física localhost:8080 y localhost:8080/admin   para administrar, crear usuarios, etc.
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Con django rest framework hay muchas clases modelo para hacer API endpoints pero dos 
+
+-APIView usa métodos HTTP estándar: get, post, put, patch, delete, ayuda a trabajar con archivos locales y llama a otras API
+	Se usa cuando se quiere tener un control completo, cuando se procesan archivos y se renderizan respuesta síncronas, cuando se llaman a otras API, y cuando se quiere acceder a archivos locales o datos
+
+En pp/profiles_api/views.py se diseña la vista para el visitante del endpoint
+	importar 'from rest_framework.views import APIView' y 'from rest_fremawork.response import Response'
+	agregar clase get que retorne un diccionario {mensaje:lista}
+Para que el usuario pueda acceder a esta view hay que trabajar el archivo pp/pp/urls.py usando el URL dispacher
+	importar 'from django.conf.urls import include' y agregar paths al urlpatterns redireccionando a las url de la api
+Crear pp/pa/urls.py
+	'from django.conf.urls import url' 'from . import views' urlpatterns = [url(r'^hello-view/', views.HelloApiView.as_view())]
+
+
+-Viewset
+
+
+
+
+
+
+
+
+

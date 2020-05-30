@@ -1,0 +1,5 @@
+jango==2.2.12
+djangorestframework==3.11.0
+pytz==2020.1
+sqlparse==0.3.1
+
