@@ -2,13 +2,10 @@ import os
 import urllib.request
 import time
 import xlsxwriter
-
 from urllib.request import urlopen
 from urllib.error import HTTPError
 from urllib.error import URLError
 from bs4 import BeautifulSoup
-
-import pymongo
 import pandas as pd
 
 ################################################################################################################################
@@ -16,7 +13,7 @@ import pandas as pd
 data = pd.read_excel('Territorios.xlsx', encoding='UTF8')
 
 
-print("\n\n\n\n            ######## BUEN DÍA ESTIMADO/A! ######## \n               ### ESTO ES MISERISCRAPING 2 ### \n\n\nEl usuario ingresa número de territorio (Argentina) para obtener los números telefónicos de cada vivienda en paginasblancas.com.ar. Exporta a excel automáticamente; el archivo se encontrará en la misma carpeta donde esté este programa. Enjoy it.-\n")
+print("\n\n\n\n    versión fallida, problema en contador fila... no usar        ######## BUEN DÍA ESTIMADO/A! ######## \n               ### ESTO ES MISERISCRAPING 2 ### \n\n\nEl usuario ingresa número de territorio (Argentina) para obtener los números telefónicos de cada vivienda en paginasblancas.com.ar. Exporta a excel automáticamente; el archivo se encontrará en la misma carpeta donde esté este programa. Enjoy it.-\n")
 
 jurisdiccion = "caba"
 fila = 1
