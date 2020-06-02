@@ -62,27 +62,37 @@ python manage.py runserver 0.0.0.0:8080
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 
-Con django rest framework hay muchas clases modelo para hacer API endpoints pero dos 
+Con django rest framework hay dos clases modelo para hacer API endpoints
 
--APIView usa métodos HTTP estándar: get, post, put, patch, delete, ayuda a trabajar con archivos locales y llama a otras API
-	Se usa cuando se quiere tener un control completo, cuando se procesan archivos y se renderizan respuesta síncronas, cuando se llaman a otras API, y cuando se quiere acceder a archivos locales o datos
+-APIView maneja la lógica
+	Usa métodos HTTP estándar: get, post, put, patch, delete, ayuda a trabajar con archivos locales y llama a otras API
+	Se usa cuando se quiere tener un control completo, cuando se procesan archivos y se renderizan respuesta síncronas,
+	cuando se llaman a otras API, y cuando se quiere acceder a archivos locales o datos
 
-En pp/profiles_api/views.py se diseña la vista para el visitante del endpoint
-	importar 'from rest_framework.views import APIView' y 'from rest_fremawork.response import Response'
-	agregar clase get que retorne un diccionario {mensaje:lista}
-Para que el usuario pueda acceder a esta view hay que trabajar el archivo pp/pp/urls.py usando el URL dispacher
-	importar 'from django.conf.urls import include' y agregar paths al urlpatterns redireccionando a las url de la api
-Crear pp/pa/urls.py
-	'from django.conf.urls import url' 'from . import views' urlpatterns = [url(r'^hello-view/', views.HelloApiView.as_view())]
-
-
--Viewset
-
+	En pp/profiles_api/views.py se diseña la vista para el visitante del endpoint
+		importar 'from rest_framework.views import APIView' y 'from rest_fremawork.response import Response'
+		agregar clase get que retorne un diccionario {mensaje:lista}
+	Para que el usuario pueda acceder a esta view hay que trabajar el archivo pp/pp/urls.py usando el URL dispacher
+		importar 'from django.conf.urls import include' y agregar paths al urlpatterns redireccionando a las url de la api
+	Crear pp/pa/urls.py
+		'from django.conf.urls import url' 'from . import views' urlpatterns = [url(r'^hello-view/', views.HelloApiView.as_view())]
 
 
+	Serializable: es un objeto que describe la información que describe los datos que se envían y son recuperados (POJO, Task, Post)
+		convierte el string JSON en objeto python
+		crear archivo en /pp/pa/serializers.py importando serializers y construyendo clase
+		importar el serializer en el pa/views.py, importar status, crear una instancia,
+		definir las funciones post, get, put (actualizar), path (actualizar parcialmente) y delete
 
 
+-Viewset se enfoca en operaciones de bases de datos
+	Usar funciones estandarizadas comunes: List, Create, Retrieve, Update, Partial Update, Destroy
+	Se usa para crud, para APIs simples y rápidas que manejen objetos, o cuando no se necesita personalizar la lógica o
+	 se trabaja con estructuras de datos estándar
 
+	importar 'from rest_framework import viewsets' en views y agregar clase con los métodos
+	Tiene un enrutador. En pp/pa/urls.py 'from django.conf.urls import include' 'from rest_framework.routers import DefaultRouter'
+	 y agregar las url
 
 
 
