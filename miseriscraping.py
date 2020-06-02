@@ -41,6 +41,9 @@ while (calle.find('ú') != -1):
 	pos = calle.find('ú')
 	calle = calle[0:pos] + 'u' + calle[pos+1:]
 
+while (calle.find('ü') != -1):
+	pos = calle.find('ü')
+	calle = calle[0:pos] + 'u' + calle[pos+1:]
 
 dia = int(time.time())
 archivo = calle +"_" + str(dia) + ".xlsx"
