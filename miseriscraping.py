@@ -1,4 +1,3 @@
-
 import urllib.request
 import time
 import xlsxwriter
@@ -9,7 +8,7 @@ from urllib.error import URLError
 from bs4 import BeautifulSoup
 
 
-print("\n\n\n\n            ######## BUEN DÍA ESTIMADO/A! ######## \n                ### ESTO ES MISERISCRAPING ### \n\n\nEl usuario ingresa calle de la ciudad de Buenos Aires -u otras jurisdicciones de Argentina- y las alturas mínima y máxima para obtener los números telefónicos de cada vivienda en paginasblancas.com.ar. Exporta a excel automáticamente; el archivo se encontrará en la misma carpeta donde esté este programa. Enjoy it.-\n")
+print("\n\n\n\n            ######## BUEN DÍA ESTIMADO/A! ######## \n                ### ESTO ES MISERISCRAPING ### \n\n\nEl usuario ingresa calle de Argentina y las alturas mínima y máxima para obtener los números telefónicos de cada vivienda en paginasblancas.com.ar. Exporta a excel automáticamente; el archivo se encontrará en la misma carpeta donde esté este programa. Enjoy it.-\n")
 
 calle = input("\nCalle: ").lower().strip()
 
@@ -77,17 +76,15 @@ if (maxInt < minInt):
 
 cantidad = maxInt - minInt + 1
 
-aceptar = input("\n-----> Se van a rastrillar " +str(cantidad) +" direcciones.\n\n3 y enter para cambiar de provincia,\n0 y enter para cancelar,\nENTER PARA CONTINUAR: \n")
+aceptar = input("\n-----> Se van a rastrillar " +str(cantidad) +" direcciones en Ciudad de Buenos Aires.\n\n3 y enter para cambiar de jurisdicción,\n0 y enter para cancelar,\nENTER PARA CONTINUAR: \n")
 
 if (aceptar == '0'):
 	quit()
 
 jurisdiccion = "caba"
 if (aceptar == '3'):
-	jurisdiccion = input("\nProvincia: ").lower().strip()
-	while (jurisdiccion.find(' ') != -1):
-		pos = jurisdiccion.find(' ')
-		jurisdiccion = jurisdiccion[0:pos] + '-' + jurisdiccion[pos+1:]
+	jurisdiccion = input("\nProvincia o localidad (ir probando): ").lower().strip()
+
 	while (jurisdiccion.find('ñ') != -1):
 		pos = jurisdiccion.find('ñ')
 		jurisdiccion = jurisdiccion[0:pos] + 'n' + jurisdiccion[pos+1:]
@@ -115,6 +112,12 @@ if (aceptar == '3'):
 	while (jurisdiccion.find('ú') != -1):
 		pos = jurisdiccion.find('ú')
 		jurisdiccion = jurisdiccion[0:pos] + 'u' + jurisdiccion[pos+1:]
+		
+	while (jurisdiccion.find('ü') != -1):
+		pos = jurisdiccion.find('ü')
+		jurisdiccion = jurisdiccion[0:pos] + 'u' + jurisdiccion[pos+1:]
+		
+	filtrar = input("Filtrar también por código postal? Introdúzcalo y enter, o solo ENTER: ")
 
 
 ##################################################################################################
@@ -154,6 +157,10 @@ for i in range(0, cantidad):
 		for taj in tajs:
 			tajStr = str(taj.getText().strip())
 			sinEspacios = " ".join(tajStr.split())
+			try:
+				cp = int(filtrar)
+			except:
+				pass
 			print(sinEspacios)
 			q += 1
 			exc = "A" + str(q)

@@ -1,0 +1,63 @@
+
+<%-include('partials/_header.ejs')-%>
+
+<div class="container container2" style="max-width: 95%;">
+
+  <!-- SEARCH -->
+  <div class="container" style="padding-top:80px; margin-bottom:50px;">
+    <!-- <form action="/" method=""> -->
+      <div class="row" style="margin-bottom:40px;">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-4">
+          <div class="form-group">
+            <input class="form-control" type="text" name="calle" id="calle"
+             style="width:90%; margin:auto;" placeholder="Calle" />
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="number" name="min" id="min"
+             style="width:90%; margin:auto;" placeholder="Altura mínima (solo números)" />
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="number" name="max" id="max"
+             style="width:90%; margin:auto;" placeholder="Altura máxima (solo números)" />
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" name="jurisdiccion" id="jurisdiccion"
+             style="width:90%; display:block; margin:auto;" placeholder="Jurisdicción" />
+          </div>
+          <div class="form-group">
+             <input class="form-control" type="number" name="cp" id="cp"
+             style="width:90%; display:block; margin:auto;" placeholder="C. postal (opcional)" />
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <button class="btn btn-success fontsforweb_fontid_77695" id="searchBtn"
+            style="height:40px; width:90%; display:block; margin:auto; background-color:#3b5998;
+            border-color:black; color:white; font-size:1.2rem;"
+            type="submit">
+              rastrillar
+          </button>
+        </div>
+      </div>
+    <!-- </form> -->
+  </div>
+
+
+
+  <div class="container" style="padding-top:40px; padding-bottom:80px; text-align:center;"
+   id="message">
+    
+    <h2 class="fontsforweb_fontid_77695" style="margin:auto; margin-bottom:50px; display:none;">
+      La descarga comenzará cuando haya concluido la búsqueda
+    </h2>
+    <h3>Se pueden monitorizar los procesos haciendo Ctrl + Shift + J</h3>
+    <h4>Demorará cerca de un minuto por cuadra</h4>
+
+  </div>    
+   
+
+</div>
+
+
+
+<%- include('partials/_footer');-%>
