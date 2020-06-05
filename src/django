@@ -158,8 +158,11 @@ Crear carpeta Deploy junto a src/ junto a Vagrantfile
 En requirements agregar uWSGI==2.0.18
 Copiar la configuración de nginx que está en github y pegarla en un archivo deploy/nginx_profiles_api.conf
 Mismo supervisor_profiles_api.conf   y   server_setup.sh  cambiando la dirección de github
-
-
+sudo apt-get install wget en aws por si no está
+En github en server_setup.sh click en raw para pasaar a texto plano y copiar la url
+wget <https>
+Darse permisos de ejecución    sudo chmod +x server_setup.sh
+Ejecutar con   sudo ./server_setup.sh
 
 
 
