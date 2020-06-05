@@ -152,7 +152,12 @@ Sistema de posteos ('feed'):
 		  permission_classes = (permissions.PostOwnStatus, IsAuthenticatedOrReadOnly)   --> IsAuthenticated
 
 
+DEPLOY
 
+Crear carpeta Deploy junto a src/ junto a Vagrantfile
+En requirements agregar uWSGI==2.0.18
+Copiar la configuración de nginx que está en github y pegarla en un archivo deploy/nginx_profiles_api.conf
+Mismo supervisor_profiles_api.conf   y   server_setup.sh  cambiando la dirección de github
 
 
 
