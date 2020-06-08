@@ -76,7 +76,17 @@ if (maxInt < minInt):
 
 cantidad = maxInt - minInt + 1
 
-aceptar = input("\n-----> Se van a rastrillar " +str(cantidad) +" direcciones en Ciudad de Buenos Aires.\n\n3 y enter para cambiar de jurisdicción,\n0 y enter para cancelar,\nENTER PARA CONTINUAR: \n")
+lados = input("\n\n-----> Se van a rastrillar " +str(cantidad) +" direcciones. ENTER para continuar o\n1 y enter para buscar solo pares\n2 y enter para buscar solo impares\n")
+
+if lados == "1":
+	print("Se buscarán solo pares\n")
+elif lados == "2":
+	print("Se buscarán solo impares\n")
+else:
+	lados == 0
+	print("Se buscarán pares e impares\n")
+
+aceptar = input("ENTER para buscar en Ciudad de Buenos Aires\n3 y enter para cambiar de jurisdicción\n0 y enter para salir\n")
 
 if (aceptar == '0'):
 	quit()
@@ -117,10 +127,31 @@ if (aceptar == '3'):
 		pos = jurisdiccion.find('ü')
 		jurisdiccion = jurisdiccion[0:pos] + 'u' + jurisdiccion[pos+1:]
 		
-	filtrar = input("Filtrar también por código postal? Introdúzcalo y enter, o solo ENTER: ")
 
+filtrar = input("\nFiltrar también por código postal? Introdúzcalo y enter, o solo ENTER: ")
+
+try:
+	filtrar = int(filtrar)
+	filtrar = str(filtrar)
+except:
+	filtrar = "no"
+
+if filtrar == "no":
+	print("\n\nCOMENZANDO ... calle " + calle + " alturas " +min + "-" +max + " en " +jurisdiccion)
+else:
+	print("\n\nCOMENZANDO ... calle " + calle + " alturas " +min + "-" +max + " en " +jurisdiccion + " CP " +filtrar)
+
+time.sleep(2)
 
 ##################################################################################################
+
+ws.write(0, 0, "DIRECCIONES")
+ws.set_column('A:A', 30)
+ws.write(0, 1, "TELÉFONOS")
+ws.set_column('B:B', 16)
+ws.write(0, 2, "JURISDICCIÓN: " +jurisdiccion.upper())
+ws.set_column('C:C', 25)
+ws.set_column('E:E', 14)
 
 q = 2
 
@@ -128,72 +159,131 @@ for i in range(0, cantidad):
 
 	numero = str(minInt + i)
 
-	direccion = 'http://www.paginasblancas.com.ar/direccion/s/' +calle +'-' +numero +'/' +jurisdiccion
+	if lados == "0":
+		pass
+	elif lados == "1" and int(numero)%2 == 0:
+		pass
+	elif lados == "2" and int(numero)%2 == 1:
+		pass
+	else:
+		continue
 
-	try:
-		datos = urllib.request.urlopen(direccion).read().decode()
-	except HTTPError as e:
-		print(e)
-	except URLError:
-		print("Servidor caído o problemas de red... Intente de nuevo")
+	unoMas = "si"
+	contador1 = 0
 
-	soup =  BeautifulSoup(datos, "html.parser")
-	
-	print("\nCalle " +calle +" " +numero +": \n")
+	for j in range(1, 50):
 
+		if unoMas == "si":
+			pass
+		else:
+			continue
 
-	ws.write(0, 0, "DIRECCIONES")
-	ws.write(0, 1, "TELÉFONOS")
-	ws.write(0, 2, "JURISDICCIÓN: " +jurisdiccion.upper())
+		direccion = 'http://www.paginasblancas.com.ar/direccion/s/' +calle +'-' +numero +'/' +jurisdiccion + "/p-" + str(j)
 
-	# RASTRILLAJE
-	supertags = soup.findAll("div", {"class": "m-results-business-section info"})
-	for supertag in supertags:
+		try:
+			datos = urllib.request.urlopen(direccion).read().decode()
+		except HTTPError as e:
+			print(e)
+		except URLError:
+			print("Servidor caído o problemas de red... Intente de nuevo")
 
-		print('\n\n#######################################################################\n')
-
-		# DIRECCIONES
-		tajs = supertag.findAll("span", {"itemprop": "streetAddress"})
-		for taj in tajs:
-			tajStr = str(taj.getText().strip())
-			sinEspacios = " ".join(tajStr.split())
-			try:
-				cp = int(filtrar)
-			except:
-				pass
-			print(sinEspacios)
-			q += 1
-			exc = "A" + str(q)
-			ws.write(exc, sinEspacios)
-
-		# CÓDIGO POSTAL
-		taks = supertag('span')
-		for tak in taks:
-			takStr = str(tak.getText())
-			if (takStr.startswith("(CP:")):
-				print(takStr)
-				excC = "C" + str(q)
-				ws.write(excC, takStr)
+		soup =  BeautifulSoup(datos, "html.parser")
+		
+		print("\nCalle " +calle +" " +numero +": \n")
 
 
-		# TELEFONOS
-		tags = supertag('input')
-		for tag in tags:
-			try:
-				tagInt = int(tag.get('value'))
-				if (tagInt > 100000):               #evitar otros datos
-					tagStr = str(tagInt)
-					tagStrG = tagStr[:2] +"-" +tagStr[2:4] +"-" +tagStr[4:8] +"-" + tagStr[8:]
-					print(tagStrG)
-					excB = "B" + str(q)
-					ws.write(excB, tagStrG)
-					
-					excE = "E" + str(q)
-					ws.write(excE, tagStr)
+		# RASTRILLAJE
+		supertags = soup.findAll("div", {"class": "m-results-business-section info"})
+		for supertag in supertags:
 
-					
-			except:
-				aux = i   #esto no hace nada
+			# CÓDIGO POSTAL
+			taks = supertag('span')
+			for tak in taks:
+				takStr = str(tak.getText())
+				if (takStr.startswith("(CP:")):
+					posDosP = takStr.find(':')
+					cp4 = takStr[posDosP+1:posDosP+5]
+					if filtrar != "no":
+						try:
+							cp4 = int(cp4)
+							filtrar = int(filtrar)
+							if filtrar == cp4:
+								print('\n\n#######################################################################\n')
+								print(takStr)
+								q += 1
+								contador1 += 1
+								#print("Contador:", contador1)
+								excC = "C" + str(q)
+								ws.write(excC, takStr)
+
+								# DIRECCIONES
+								tajs = supertag.findAll("span", {"itemprop": "streetAddress"})
+								for taj in tajs:
+									tajStr = str(taj.getText().strip())
+									sinEspacios = " ".join(tajStr.split())
+									print(sinEspacios)
+									exc = "A" + str(q)
+									ws.write(exc, sinEspacios)
+
+								# TELEFONOS
+								tags = supertag('input')
+								for tag in tags:
+									try:
+										tagInt = int(tag.get('value'))
+										if (tagInt > 100000):               #evitar otros datos
+											tagStr = str(tagInt)
+											tagStrG = tagStr[:2] +"-" +tagStr[2:4] +"-" +tagStr[4:8] +"-" + tagStr[8:]
+											print(tagStrG)
+											excB = "B" + str(q)
+											ws.write(excB, tagStrG)
+											
+											excE = "E" + str(q)
+											ws.write(excE, tagStr)
+									except:
+										aux = i   #esto no hace nada
+						except:
+							z = 1
+
+					else:
+						print('\n\n#######################################################################\n')
+						print(takStr)
+						q += 1
+						contador1 += 1
+						excC = "C" + str(q)
+						ws.write(excC, takStr)
+						#print("Contador:", contador1)
+
+						# DIRECCIONES
+						tajs = supertag.findAll("span", {"itemprop": "streetAddress"})
+						for taj in tajs:
+							tajStr = str(taj.getText().strip())
+							sinEspacios = " ".join(tajStr.split())
+							print(sinEspacios)
+							exc = "A" + str(q)
+							ws.write(exc, sinEspacios)
+
+						# TELEFONOS
+						tags = supertag('input')
+						for tag in tags:
+							try:
+								tagInt = int(tag.get('value'))
+								if (tagInt > 100000):               #evitar otros datos
+									tagStr = str(tagInt)
+									tagStrG = tagStr[:2] +"-" +tagStr[2:4] +"-" +tagStr[4:8] +"-" + tagStr[8:]
+									print(tagStrG)
+									excB = "B" + str(q)
+									ws.write(excB, tagStrG)
+									
+									excE = "E" + str(q)
+									ws.write(excE, tagStr)
+							except:
+								aux = i   #esto no hace nada
+		
+		if contador1/15 == j:
+			unoMas = "si"
+		else:
+			unoMas = "no"
+		#print("Contador1:", contador1, "Uno más abajo: " + unoMas)
 
 
 
@@ -202,7 +292,7 @@ for i in range(0, cantidad):
 
 wb.close()
 
-print("\n\n\n#####################            Exportado a archivo Excel con éxito! \n\n\n")
+print("\n\n\n#####################            Exportado a archivo Excel con éxito! \n\n\nSolo para fines educativos. Dudas y problemas a ghp.2120@gmail.com\n\n\n")
 
 
 
