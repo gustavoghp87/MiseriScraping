@@ -14,7 +14,7 @@ Librerías: requiere beautifulsoup y xlsxwriter
 
 ############################################################################################################################################
 
-MiseriScraping is a web scraping app wroten in Python to seek and download telephone numbers with addresses very fast and automatic.
+MiseriScraping is a web scraping app wroten in Python to seek and download telephone numbers with addresses.
 
 Require:
 pip3 install bs4
