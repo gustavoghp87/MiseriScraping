@@ -294,5 +294,3 @@ wb.close()
 
 print("\n\n\n#####################            Exportado a archivo Excel con éxito! \n\n\nSolo para fines educativos. Dudas y problemas a ghp.2120@gmail.com\n\n\n")
 
-
-

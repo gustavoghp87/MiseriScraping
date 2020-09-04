@@ -1,5 +1,5 @@
 # MiseriScraping
-App de terminal en Python para hacer web scraping sobre el sitio de Páginas Blancas de Argentina y poder descargar gran cantidad de números telefónicos y sus respectivas direcciones, exportando automáticamente a archivo Excel (.xlsx). Se introduce la calle, la altura mínima de barrido y la altura máxima, opcionalmente se cambia de ciudad (CABA por default). Luego se esperan los resultados.
+App de terminal y ejecutable para Windows en Python para hacer web scraping sobre el sitio de Páginas Blancas de Argentina y poder descargar gran cantidad de números telefónicos y sus respectivas direcciones, exportando automáticamente a archivo Excel (.xlsx). Se introduce la calle, la altura mínima de barrido y la altura máxima, opcionalmente se cambia de ciudad (CABA por default). Luego se esperan los resultados.
 
 Barre cerca de 100 direcciones por minuto.
 
@@ -9,8 +9,7 @@ Lo mismo decimos para el nombre específico de las calles. Por ejemplo, Páginas
 
 Librerías: requiere beautifulsoup y xlsxwriter
 
-<video src="https://www.youtube.com/embed/AJW4_3rtcoE" width="320" height="200" controls preload></video>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/AJW4_3rtcoE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+Video: https://www.youtube.com/embed/AJW4_3rtcoE
 
 ############################################################################################################################################
 

@@ -147,6 +147,7 @@ def monging(calle, min, max, pares2, impares2, jurisdiccion, cp2, dia):
 
 	try:
 		myclient = pymongo.MongoClient("mongodb://ms:0123456789Mise20200123456789Mise@3.22.60.96:46016/miseriscraping")
+		# no sirve más
 		mydb = myclient["miseriscraping"]
 		mydb.busquedas.insert_one(json)
 	except:
