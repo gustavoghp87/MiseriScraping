@@ -22,23 +22,4 @@ pip3 install XlsxWriter
 
 ############################################################################################################################################
 
-Instrucciones para Windows:
-1) Descargar python 3 desde https://www.python.org/downloads/release/python-383/
-   Es el archivo Windows x86-64 executable installer
-   Opcionalmente ver si hay alguna versión superior
-2) En la ventana de diálogo de instalación del programa tildar la opción "Agregar Python al Path / Add Python 3.8 to Path"
-3) Instalar
-4) Buscar y abrir "cmd" en la lupa de Windows
-   Opción 2: click derecho en el logo de windows y abrir Windows PowerShell
-   Opción 3: abrir C://Windows/system32/cmd
-5) Tipear: python -m pip install -U pip    y dar enter
-   Tiper:  pip install bs4                 y dar enter
-   Tiper:  pip install xlsxwriter          y dar enter
-   Si ninguna de estas cosas funciona, reiniciar pc y volver a intentar
-6) Poner miseriscraping.py en una carpeta exclusiva
-7) Presionando Shift hacer click derecho en alguna parte vacía de la carpeta y seleccionar "Abrir la ventana de PowerShell aquí"
-   Esto es solo para Windows 10. Para versiones anteriores, hay que abrir "cmd" como en el punto 4) y navegar hasta MiseriScraping
-8) Tipear: python3 .\miseriscraping.py     y dar enter
-9) El programa puede ser interrumpido en cualquier momento con control+c
-
 
