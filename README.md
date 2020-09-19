@@ -1,5 +1,12 @@
 # MiseriScraping
-App de terminal y ejecutable para Windows en Python para hacer web scraping sobre el sitio de Páginas Blancas de Argentina y poder descargar gran cantidad de números telefónicos y sus respectivas direcciones, exportando automáticamente a archivo Excel (.xlsx). Se introduce la calle, la altura mínima de barrido y la altura máxima, opcionalmente se cambia de ciudad (CABA por default). Luego se esperan los resultados.
+
+App de terminal y ejecutable para Windows en Python para hacer web scraping sobre el sitio de Páginas Blancas de Argentina.
+
+Descargar gran cantidad de números telefónicos y sus respectivas direcciones, exportando automáticamente a archivo Excel (.xlsx).
+
+Se introduce la calle, la altura mínima de barrido y la altura máxima, opcionalmente se cambia de ciudad (CABA por default) y pares/impares.
+
+Luego se esperan los resultados.
 
 Barre cerca de 100 direcciones por minuto.
 
@@ -7,11 +14,11 @@ Respecto a las jurisdicciones, partidos y localidades, se depende de la base de 
 
 Lo mismo decimos para el nombre específico de las calles. Por ejemplo, Páginas Blancas toma "j m moreno" y no "jose maria moreno". Hay que ir probando.
 
-Librerías: requiere beautifulsoup y xlsxwriter
+Librerías para versión de terminal: requiere beautifulsoup y xlsxwriter (se puede activar el entorno virtual y listo, "venv\Scripts\activate")
 
 Video: https://www.youtube.com/embed/AJW4_3rtcoE
 
-############################################################################################################################################
+--------------------------------------------------------------------------------------------------------------------------------
 
 MiseriScraping is a web scraping app wroten in Python to seek and download telephone numbers with addresses.
 
@@ -20,6 +27,5 @@ pip3 install bs4
 pip3 install XlsxWriter
 
 
-############################################################################################################################################
-
+--------------------------------------------------------------------------------------------------------------------------------
 

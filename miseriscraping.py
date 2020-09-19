@@ -83,7 +83,7 @@ if lados == "1":
 elif lados == "2":
 	print("Se buscarán solo impares\n")
 else:
-	lados == 0
+	lados = "0"
 	print("Se buscarán pares e impares\n")
 
 aceptar = input("ENTER para buscar en Ciudad de Buenos Aires\n3 y enter para cambiar de jurisdicción\n0 y enter para salir\n")
